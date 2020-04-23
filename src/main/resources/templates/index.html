@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<!--      thymeleaf的命名空间：
+            xmlns:th="http://www.thymeleaf.org"
+
+          thymeleaf-extras-springsecurity5的命名空间：
+            xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+
+
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <h1>SpringSecurity</h1>
+<!--    如果未登录,显示登录按钮-->
+    <div sec:authorize="!isAuthenticated()">
+        <a th:href="@{/login}">登录</a>
+    </div>
+<!--    如果登录，显示注销按钮-->
+    <div sec:authorize="isAuthenticated()">
+        <a th:href="@{/logout}">注销</a>
+    </div>
+    <hr>
+
+    <div sec:authorize="hasRole('vip1')">
+        <span>vip1</span>
+        <a href="/level1/1">vip1.html</a>
+    </div>
+    <hr>
+    <div sec:authorize="hasRole('vip2')">
+        <span>vip2</span>
+        <a href="/level2/1">vip2.html</a>
+    </div>
+    <hr>
+    <div sec:authorize="hasRole('vip3')">
+        <span>vip3</span>
+        <a href="/level3/1">vip3.html</a>
+    </div>
+    <hr>
+</body>
+</html>
